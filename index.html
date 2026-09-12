@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts: Noto Sans Gujarati ઉમેરવામાં આવ્યા છે -->
+    <!-- Google Fonts: Noto Sans Gujarati -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,7 +22,6 @@
         }
 
         body {
-            /* ફોન્ટ બદલીને Noto Sans Gujarati કરવામાં આવ્યા છે */
             font-family: 'Noto Sans Gujarati', sans-serif;
             background-color: var(--bg-body);
             color: #1e293b;
@@ -292,16 +291,13 @@
             table th, table td { border: 1px solid #000 !important; color: #000 !important; }
         }
 
-        /* --- મોબાઇલ લેઆઉટ માટે સ્પેશિયલ કોડ (સુધારો) --- */
+        /* --- મોબાઇલ લેઆઉટ માટે સ્પેશિયલ કોડ --- */
         @media screen and (max-width: 768px) {
             .main-wrapper { padding: 12px; }
             .content-card { padding: 15px; margin-bottom: 15px; }
             .stat-card { margin-bottom: 10px; }
             
-            /* ટેબલ સ્ક્રીનની બહાર ન જાય અને આડું સ્ક્રોલ થાય */
-            .table-responsive {
-                border: 0;
-            }
+            .table-responsive { border: 0; }
             .table-responsive table {
                 display: block;
                 overflow-x: auto;
@@ -309,36 +305,15 @@
                 width: 100%;
             }
             
-            /* બટન અને હેડર લેઆઉટ સળંગ કરવા */
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-            .section-header button {
-                width: 100%;
-                margin-left: 0 !important;
-            }
-            .top-navbar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            .top-navbar .d-flex.align-items-center.gap-2 {
-                width: 100%;
-                justify-content: space-between;
-            }
-            /* મોડલની અંદરના બટન સાઈઝ */
-            .modal-body button {
-                width: 100%;
-                margin-top: 10px;
-            }
-            .modal-body .btn-secondary {
-                margin-right: 0 !important;
-            }
-            .text-end.mt-4, .text-end.mt-3 {
-                text-align: center !important;
-            }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .section-header button { width: 100%; margin-left: 0 !important; }
+            
+            .top-navbar { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .top-navbar .d-flex.align-items-center.gap-2 { width: 100%; justify-content: space-between; }
+            
+            .modal-body button { width: 100%; margin-top: 10px; }
+            .modal-body .btn-secondary { margin-right: 0 !important; }
+            .text-end.mt-4, .text-end.mt-3 { text-align: center !important; }
         }
     </style>
 </head>
@@ -346,7 +321,7 @@
 
 <div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
 
-<!-- લૉગિન Modal (સુરક્ષિત ગૂગલ શીટ વેરિફિકેશન) -->
+<!-- લૉગિન Modal (સુરક્ષિત લોકલ વેરિફિકેશન) -->
 <div class="modal fade" id="authModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow-lg" style="border-radius: 20px; overflow: hidden;">
@@ -369,10 +344,10 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold small text-muted">સુરક્ષિત પિન (PIN)</label>
+                        <label class="form-label fw-bold small text-muted">મોબાઇલ નંબર (પાસવર્ડ)</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-key text-muted"></i></span>
-                            <input type="password" id="loginPin" class="form-control border-start-0 fw-bold" placeholder="પિન દાખલ કરો" required>
+                            <input type="password" id="loginPin" class="form-control border-start-0 fw-bold" placeholder="તમારો પાસવર્ડ નાખો" required>
                         </div>
                     </div>
                     
@@ -380,7 +355,6 @@
 
                     <button type="submit" id="authSubmitBtn" class="btn btn-action-emerald w-100 py-2 fw-bold">
                         <span id="btnText"><i class="fa-solid fa-right-to-bracket me-2"></i>સુરક્ષિત પ્રવેશ કરો</span>
-                        <span id="btnSpinner" class="spinner-border spinner-border-sm d-none"></span>
                     </button>
                 </form>
             </div>
@@ -816,7 +790,7 @@
                 </div>
             </div>
 
-            <!-- TAB: પરિશિષ્ટ-૬ (બેંક મેળવણું - જૂના કોડ મુજબની મૂળ રચના) -->
+            <!-- TAB: પરિશિષ્ટ-૬ (બેંક મેળવણું) -->
             <div class="tab-pane fade" id="tabP6">
                 <div class="content-card">
                     <div class="section-header text-center flex-column">
@@ -1006,18 +980,12 @@
 
 <script>
     /* =========================================================================
-       GOOGLE APPS SCRIPT WEB APP URL
+       લૉગિન સેટિંગ્સ (અહીં તમારો ડાયસ કોડ અને પાસવર્ડ/મોબાઇલ નંબર સેટ કરો)
        ========================================================================= */
-    const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxinFSkNNPf-VTaJRKZdw4y928FkAtGBixBN79DRK0VKtEOG7iI__bKEmcZX06uLYcQTA/exec";
-
-    // ક્લાયન્ટ સાઇડ SHA-256 હેશિંગ ફંક્શન
-    async function computeSHA256(message) {
-        const msgBuffer = new TextEncoder().encode(message.trim());
-        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
+    const MY_DISE_CODE = "24280100101"; // અહીં તમારો ડાયસ કોડ લખો
+    const MY_PASSWORD = "તમારો_મોબાઈલ_નંબર"; // અહીં તમારો મોબાઇલ નંબર (પાસવર્ડ) લખો
+    const MY_SCHOOL_NAME = "મારી પ્રાથમિક શાળા"; // અહીં તમારી શાળાનું નામ લખો
+    
     // સ્ટેટ ડેટા - શાળાની વિગતો સંપૂર્ણ કોરી (Blank)
     let schoolData = {
         dise: "",
@@ -1053,53 +1021,37 @@
         }
     }
 
-    // ગૂગલ શીટ લૉગિન વેરિફિકેશન
-    async function executeSecureLogin(e) {
+    // લોકલ વેરિફિકેશન (Google Script વગર)
+    function executeSecureLogin(e) {
         e.preventDefault();
         const dise = document.getElementById('loginDise').value.trim();
         const pin = document.getElementById('loginPin').value.trim();
         const alertBox = document.getElementById('authAlert');
-        const btnText = document.getElementById('btnText');
-        const btnSpinner = document.getElementById('btnSpinner');
         const submitBtn = document.getElementById('authSubmitBtn');
 
         alertBox.classList.add('d-none');
-        btnText.classList.add('d-none');
-        btnSpinner.classList.remove('d-none');
         submitBtn.disabled = true;
 
-        try {
-            const pinHashed = await computeSHA256(pin);
-
-            const requestUrl = `${GOOGLE_SCRIPT_WEB_APP_URL}?dise=${encodeURIComponent(dise)}&pin=${encodeURIComponent(pin)}&pinHash=${encodeURIComponent(pinHashed)}`;
-            const response = await fetch(requestUrl);
-            const result = await response.json();
-
-            if (result.success) {
-                sessionStorage.setItem('rojmel_auth_logged', 'true');
-                sessionStorage.setItem('rojmel_auth_dise', dise);
-                
-                schoolData.dise = dise;
-                if (!schoolData.schoolName && result.schoolName) {
-                    schoolData.schoolName = result.schoolName;
-                    saveSchoolDataToLocal();
-                }
-
-                const authModal = bootstrap.Modal.getInstance(document.getElementById('authModal'));
-                if (authModal) authModal.hide();
-                renderAll();
-            } else {
-                alertBox.innerText = result.message || "ખોટો ડાયસ કોડ અથવા પિન!";
-                alertBox.classList.remove('d-none');
+        // સીધું લોકલ ચેકિંગ
+        if (dise === MY_DISE_CODE && pin === MY_PASSWORD) {
+            sessionStorage.setItem('rojmel_auth_logged', 'true');
+            sessionStorage.setItem('rojmel_auth_dise', dise);
+            
+            schoolData.dise = dise;
+            if (!schoolData.schoolName) {
+                schoolData.schoolName = MY_SCHOOL_NAME;
+                saveSchoolDataToLocal();
             }
-        } catch (error) {
-            alertBox.innerText = "કનેક્શન નિષ્ફળ! ઇન્ટરનેટ કનેક્શન તપાસો અથવા સ્ક્રિપ્ટ એક્સેસ ચેક કરો.";
+
+            const authModal = bootstrap.Modal.getInstance(document.getElementById('authModal'));
+            if (authModal) authModal.hide();
+            renderAll();
+        } else {
+            alertBox.innerText = "ખોટો ડાયસ કોડ અથવા પિન (મોબાઇલ નંબર)!";
             alertBox.classList.remove('d-none');
-        } finally {
-            btnText.classList.remove('d-none');
-            btnSpinner.classList.add('d-none');
-            submitBtn.disabled = false;
         }
+        
+        submitBtn.disabled = false;
     }
 
     function logout() {
@@ -1497,7 +1449,7 @@
         });
     }
 
-    // પરિશિષ્ટ-૬: બેંક સાથે મેળવણું (મૂળ જૂના કોડ પ્રમાણેનું કેલ્ક્યુલેશન)
+    // પરિશિષ્ટ-૬: બેંક સાથે મેળવણું
     function renderP6() {
         const totalOpBal = grantHeads.reduce((acc, h) => acc + (h.openingBal || 0), 0);
         const incTotal = transactions.filter(t => t.type === 'INCOME').reduce((a, b) => a + b.amount, 0);
@@ -1577,6 +1529,3 @@
 </script>
 </body>
 </html>
-```eof
-
-તમારી જૂની `index.html` ફાઇલમાં રહેલા બધા ડેટાને ભૂંસીને, તેની જગ્યાએ આ પૂરો નવો કોડ પેસ્ટ કરી દેશો એટલે વેબસાઇટ સીધી જ મોબાઇલમાં પરફેક્ટ અને આકર્ષક ગુજરાતી ફોન્ટમાં દેખાવા લાગશે. કોઈ અન્ય સહાયની જરૂર હોય તો જણાવજો!
